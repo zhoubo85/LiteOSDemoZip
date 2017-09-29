@@ -12,15 +12,15 @@ This is a liteOS project for stm32L476 and NEUL BC95(NB module)
 ### 2: Some thing about LiteOS run the nb demo ### 
 - a: the nb demo task function is in file user/ocean_sample.c 
    void oceancon_sampletask(void * pvParameters) is the task function.
-- b: the nb device driver are nb_core.c��neul_bc95_data.c��at_interface.c
+- b: the nb device driver are nb_core.c neul_bc95_data.c at_interface.c
 - c: stm32L476 communicate with NB module by USART2
 - d: nb module connect huawei occean connect platform main steps are in oceaninterface/ocean_interface.c
        ocean_sample.c will call  ocean_interface.c's function , and ocean_interface.c will call nb_core.c's function
        like ocean_sample.c-->ocean_interface.c-->nb_core.c-->at_interface.c-->uart2
        
 ### 3: how nb module communicate with huawei occean connect platform ### 
-- stpe1(init nb module): ret = ocean_res_init(CON_NB, TRAN_MAX, NB_NEUL_BC95);��
-- step2(upload local user data): ocean_send_data(data, len);��
+- stpe1(init nb module): ret = ocean_res_init(CON_NB, TRAN_MAX, NB_NEUL_BC95);
+- step2(upload local user data): ocean_send_data(data, len);
 - step3(recive platform's data):n = ocean_recv_data(test_rbuf, 512);
 - step4(deal with  special user data ): ocean_dev_control(test_rbuf, n);
    
